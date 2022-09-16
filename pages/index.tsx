@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Menu from "../src/components/menu/Menu";
+import NewTask from "../src/components/newTask/NewTask";
 import Task from "../src/components/task/Task";
 
 const Home: NextPage = () => {
@@ -34,8 +34,7 @@ const Home: NextPage = () => {
           <Task tasks={[{ title: "Call mom", isDone: true }]} />
         </div>
       </div>
-      {/* <Menu /> */}
-      <div>New task</div>
+      <NewTask />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { FC, SelectHTMLAttributes, useState } from "react";
 interface SelectOption {
   label: string;
   value: string;
-  isDefault?: boolean;
 }
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -13,13 +12,16 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 const Select: FC<SelectProps> = ({ options, name, value, ...props }) => {
   return (
     <div>
-      <select name={name} id={name} value={value} {...props}>
-        {options.map(({ label, value, isDefault }: SelectOption, i: number) => (
-          <option
-            key={i}
-            value={value}
-            selected={isDefault ? isDefault : false}
-          >
+      <select
+        name={name}
+        id={name}
+        value={value}
+        {...props}
+        className="shadow-sm rounded-lg border-2 border-gray-300"
+      >
+        <option value="">Please select</option>
+        {options.map(({ label, value }: SelectOption, i: number) => (
+          <option key={i} value={value}>
             {label}
           </option>
         ))}
