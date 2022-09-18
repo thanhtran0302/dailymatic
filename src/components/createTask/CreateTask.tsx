@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction } from "react";
 import Input from "../input/Input";
 import Select from "../select/Select";
+import { API_URL } from "../../constants/api";
 
 interface CreateTask {
   title: string;
@@ -34,7 +35,7 @@ const CreateTask: FC<CreateTaskProps> = ({ setModalAction }) => {
       }),
     };
 
-    const a = await axios.post("http://localhost:4001/task", payload);
+    await axios.post(`${API_URL}/task`, payload);
     setModalAction(false);
   };
 
