@@ -2,7 +2,7 @@ import axios from "axios";
 import type { NextPage } from "next";
 import Head from "next/head";
 import NewTask from "../src/components/newTask/NewTask";
-import Task from "../src/components/task/Task";
+import Task from "../src/components/taskList/TaskList";
 import { API_URL } from "../src/constants/api";
 
 export interface RankedTask {
