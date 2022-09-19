@@ -2,7 +2,7 @@ import axios from "axios";
 import { FC } from "react";
 import { RankedTask } from "../../../pages";
 import { API_URL } from "../../constants/api";
-import Checkbox from "../checkbox/Checkbox";
+import Task from "../task/Task";
 
 interface TaskProps {
   tasks: RankedTask[];
@@ -14,23 +14,16 @@ const TaskList: FC<TaskProps> = ({ tasks }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      {tasks.map(({ title, id, isDone }: RankedTask, index: number) => {
+    <div className="flex flex-col items-center px-3">
+      {tasks.map((task: RankedTask, index: number) => {
         return (
-          <div
+          <Task
+            task={task}
             key={index}
-            className="px-3 py-4 rounded-lg group flex justify-between hover:shadow-md w-9/12 lg:w-5/12 items-center"
-          >
-            <Checkbox
-              type="checkbox"
-              defaultChecked={!!isDone}
-              label={title}
-              id={title}
-              onChange={async () => {
-                await onChange(id);
-              }}
-            />
-          </div>
+            onChange={async () => {
+              await onChange(task.id);
+            }}
+          />
         );
       })}
     </div>
