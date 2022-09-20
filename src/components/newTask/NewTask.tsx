@@ -1,3 +1,4 @@
+import PlusIcon from "../../icons/Plus";
 import CreateTask from "../createTask/CreateTask";
 import Modal, { useModal } from "../modal/Modal";
 
@@ -6,7 +7,12 @@ const NewTask = () => {
 
   return (
     <div className="menu absolute bottom-16 right-10">
-      <button onClick={() => setModalOpen(true)}>Add new task</button>
+      <div
+        onClick={() => setModalOpen(true)}
+        className="w-12 h-12 border shadow-md hover:shadow-lg flex items-center justify-center rounded-full cursor-pointer"
+      >
+        <PlusIcon />
+      </div>
       <Modal
         title="Create a new task"
         isOpen={isModalOpen}
