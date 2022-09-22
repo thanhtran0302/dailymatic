@@ -9,7 +9,7 @@ const NewTask = () => {
     <div className="menu absolute bottom-16 right-10">
       <div
         onClick={() => setModalOpen(true)}
-        className="w-12 h-12 border shadow-md hover:shadow-lg flex items-center justify-center rounded-full cursor-pointer"
+        className="border shadow-md hover:shadow-lg flex items-center justify-center rounded-full cursor-pointer"
       >
         <PlusIcon />
       </div>

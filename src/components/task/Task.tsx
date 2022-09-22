@@ -58,7 +58,9 @@ const Task: FC<InputProps> = ({
           </label>
         </div>
         <div
-          className="cursor-pointer flex items-center justify-center hover:bg-grey-100 rounded-full w-7 h-7"
+          className={`${
+            taskDetailOpen && "rotate-45 bg-grey-100"
+          } transition-transform cursor-pointer flex items-center justify-center hover:bg-grey-100 rounded-full w-7 h-7`}
           onClick={() => setTaskDetailOpen(!taskDetailOpen)}
         >
           <PlusIcon />

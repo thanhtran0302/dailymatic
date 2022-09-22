@@ -35,7 +35,7 @@ const Home: NextPage<HomeProps> = ({ tasks }) => {
 
       <div>
         <h1 className="text-orange-500 text-5xl font-bold text-center mt-28">
-          Today&rsquo;s focus
+          Today
         </h1>
 
         <div className="tasks mt-4">
