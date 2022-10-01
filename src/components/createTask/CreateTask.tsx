@@ -4,10 +4,12 @@ import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction } from "react";
 import Input from "../input/Input";
 import Select from "../select/Select";
 import { API_URL } from "../../constants/api";
+import LabelCheck from "../labelCheck/LabelCheck";
 
 interface CreateTask {
   title: string;
-  priority: string;
+  isImportant?: boolean;
+  isUrgent?: boolean;
   description?: string;
   dueDate?: Date;
   timeSpentEstimate?: {
@@ -26,10 +28,18 @@ const CreateTask: FC<CreateTaskProps> = ({ setModalAction }) => {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { timeSpentEstimate, dueDate, ...data } = getValues();
+    const {
+      timeSpentEstimate,
+      dueDate,
+      isImportant = false,
+      isUrgent = false,
+      ...data
+    } = getValues();
     const payload = {
       ...data,
       ...(dueDate && { dueDate }),
+      isImportant,
+      isUrgent,
       ...(timeSpentEstimate && {
         timeSpentEstimate: `${timeSpentEstimate.hour}:${timeSpentEstimate.minute}`,
       }),
@@ -92,25 +102,16 @@ const CreateTask: FC<CreateTaskProps> = ({ setModalAction }) => {
             }
           />
         </div>
-        <div>
-          <Select
-            options={[
-              { value: "NORMAL", label: "NORMAL" },
-              { value: "LOWEST", label: "LOWEST" },
-              { value: "LOW", label: "LOW" },
-              { value: "HIGH", label: "HIGH" },
-              { value: "HIGHEST", label: "HIGHEST" },
-              { value: "URGENT", label: "URGENT" },
-              { value: "CRITICAL", label: "CRITICAL" },
-            ]}
-            name="select-priority"
-            value={getValues("priority")}
-            onChange={({ target: { value } }: ChangeEvent<HTMLSelectElement>) =>
-              setValue("priority", value)
-            }
-            required
-          />
-        </div>
+        <LabelCheck
+          label="Is important ?"
+          option={"Important"}
+          onChange={(value) => setValue("isImportant", value)}
+        />
+        <LabelCheck
+          label="Is urgent ?"
+          option={"Urgent"}
+          onChange={(value) => setValue("isUrgent", value)}
+        />
         <div className="mt-4">
           <button
             type="submit"
